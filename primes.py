@@ -3,12 +3,13 @@
 import math
 
 DEBUG = True
+FILE = "index.html"
 
 primes = [2]
 
 try:
-    if DEBUG: print("Opening and reading primes.txt.")
-    f = open("primes.txt", "r")
+    if DEBUG: print("Opening and reading file.")
+    f = open(FILE, "r")
     line = f.readline()
     if line != "2\n":
         raise ValueError
@@ -18,8 +19,8 @@ try:
         line = f.readline()
     f.close()
 except (FileNotFoundError, ValueError):
-    if DEBUG: print("Invalid primes.txt. Writing over.")
-    f = open("primes.txt", "w")
+    if DEBUG: print("Invalid file. Writing over.")
+    f = open(FILE, "w")
     f.write("2\n")
     f.close
 
@@ -44,7 +45,7 @@ while True:
     if is_prime:
         if DEBUG: print(str(value_to_test) + " is prime.")
         primes.append(value_to_test)
-        f = open("primes.txt", "a")
+        f = open(FILE, "a")
         f.write(str(value_to_test) + "\n")
         f.close()
     value_to_test += 1
