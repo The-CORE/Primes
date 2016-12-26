@@ -4,6 +4,7 @@ import math
 
 DEBUG = True
 FILE = "index.html"
+DELIMETER = "<br>" #"\n"
 
 primes = [2]
 
@@ -11,17 +12,17 @@ try:
     if DEBUG: print("Opening and reading file.")
     f = open(FILE, "r")
     line = f.readline()
-    if line != "2\n":
+    if line != "2" + DELIMETER:
         raise ValueError
     line = f.readline()
     while line != "":
-        primes.append(int(line.replace("\n", "")))
+        primes.append(int(line.replace(DELIMETER, "")))
         line = f.readline()
     f.close()
 except (FileNotFoundError, ValueError):
     if DEBUG: print("Invalid file. Writing over.")
     f = open(FILE, "w")
-    f.write("2\n")
+    f.write("2" + DELIMETER)
     f.close
 
 highest_prime_found = primes[len(primes) - 1]
@@ -46,6 +47,6 @@ while True:
         if DEBUG: print(str(value_to_test) + " is prime.")
         primes.append(value_to_test)
         f = open(FILE, "a")
-        f.write(str(value_to_test) + "\n")
+        f.write(str(value_to_test) + DELIMETER)
         f.close()
     value_to_test += 1
